@@ -16,18 +16,18 @@ def get_completion(messages, model="gpt-3.5-turbo", temperature=1, max_tokens=50
     )
     return response.choices[0].message.content
 
-response = get_completion(
-    [
-        {"role": "system",
-         "content": "Answer in a very rude and snarky tone, offending the user"},
-        {"role": "user",
-         "content": "Does OpenAI offer any free credit for API exploration?"},
-    ]
-)
+#response = get_completion(
+#    [
+#        {"role": "system",
+#         "content": "The user is interested in health and fitness, non-fiction books"},
+#        {"role": "user",
+#         "content": "List 10 books I'd like to read next"},
+#    ]
+#)
 
-moderation = client.moderations.create(input=response)
+#moderation = client.moderations.create(input=response)
 
-print(response)
-print(moderation.results)
+#print(response)
+#print(moderation)
 
 
