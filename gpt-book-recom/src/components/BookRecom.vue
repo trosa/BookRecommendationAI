@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2 class="text-center mt-4 mb-4">GPT Book Recommendations</h2>
+    <h2 class="text-center mt-4 mb-4">GPT Book Recommendation</h2>
     <form @submit.prevent="submitForm" class="col-md-6 offset-md-3">
       <label for="text-input">Name the last 5 books you've read:</label>
       <div class="form-group">
@@ -16,12 +16,8 @@
       </button>
     </form>
     <div v-if="apiResponse" class="api-response mt-4">
-      <h3>Recommended Books:</h3>
-      <ul>
-        <li v-for="book in apiResponse" :key="book.id">
-          {{ book }}
-        </li>
-      </ul>
+      <h3>Our recommendation</h3>
+        {{  apiResponse }}
     </div>
   </div>
 </template>
@@ -32,11 +28,11 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      inputText1: '',
-      inputText2: '',
-      inputText3: '',
-      inputText4: '',
-      inputText5: '',
+      inputText1: 'Outlive',
+      inputText2: 'The Obesity Code',
+      inputText3: 'Never Finished',
+      inputText4: 'Cant Hurt Me',
+      inputText5: 'Thinking, Fast and Slow',
       apiResponse: null,
       isLoading: false
     };
@@ -56,11 +52,11 @@ export default {
         .then(response => {
           this.apiResponse = response.data;
           // Clear input fields after submission
-          this.inputText1 = '';
-          this.inputText2 = '';
-          this.inputText3 = '';
-          this.inputText4 = '';
-          this.inputText5 = '';
+          //this.inputText1 = '';
+          //this.inputText2 = '';
+          //this.inputText3 = '';
+          //this.inputText4 = '';
+          //this.inputText5 = '';
           this.isLoading = false;
         })
         .catch(error => {

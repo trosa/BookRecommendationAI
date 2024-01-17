@@ -16,21 +16,16 @@ bootstrap = Bootstrap5(app)
 
 system_message = f"""
     The user has read a few books recently and wants to discover \ 
-    new books to read next.
-    You need to suggest a list of books for the user \ 
-    that are similar or related to the style and theme of the books \ 
-    they have recently read.
-    Output the list in JSON format, describing the title \ 
-    of the book, the authors and a very brief (one sentence long) description \
-    of why you chose each specific book.
+    a new book to read next.
+    You need to suggest a next book for the user to read, \ 
+    which has has a high likelihood of matching their interests, \ 
+    based on the books they have recently read.
+    Write a nice review of the book containing basic information like \ 
+    the title, the authors and a very brief (one sentence long) description \
+    of why you chose that specific book as a recommendation, outlining \
+    the similarities between the recommended book and the books the user \
+    has recently read.
 """
-
-@app.route('/books2', methods=['POST'])
-def book_recoms2():
-    response_object = {'status': 'success'}
-    post_data = request.get_json()
-    response_object['books'] = 'Book Recommended!'
-    return jsonify(response_object)
 
 @app.route('/books', methods=['POST'])
 def book_recoms():
@@ -52,7 +47,7 @@ def book_recoms():
             """
             },
             {"role": "user",
-            "content": "List 10 books I'd like to read next" },
+            "content": "Suggest a next book for the user to read" },
         ]
     )
     return completion

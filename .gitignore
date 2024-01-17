@@ -1,1 +1,7 @@
 .env
+.idea/misc.xml
+.idea/vcs.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/runConfigurations/openAiSandbox.xml
+__pycache__/index.cpython-311.pyc
+__pycache__/openAiSandbox.cpython-311.pyc
