@@ -1,26 +1,68 @@
 <template>
-  <div class="container">
-    <h2 class="text-center mt-4 mb-4">GPT Book Recommendation</h2>
-    <form @submit.prevent="submitForm" class="col-md-6 offset-md-3">
-      <label for="text-input">Name the last 5 books you've read:</label>
-      <div class="form-group">
-        <input type="text" id="text-input-1" v-model="inputText1" class="form-control mb-3">
-        <input type="text" id="text-input-2" v-model="inputText2" class="form-control mb-3">
-        <input type="text" id="text-input-3" v-model="inputText3" class="form-control mb-3">
-        <input type="text" id="text-input-4" v-model="inputText4" class="form-control mb-3">
-        <input type="text" id="text-input-5" v-model="inputText5" class="form-control mb-3">
+  <div class="container-fluid">
+    <h2 class="text-center mt-4 mb-4 text-white">GPT Book Recommendations</h2>
+    <div class="">
+      <form @submit.prevent="submitForm" class="bg-dark text-white p-4 rounded-lg">
+        <label for="text-input" class="text-white">Name the last 5 books you've read:</label>
+        <div class="form-group">
+          <input type="text" id="text-input-1" v-model="inputText1" class="form-control mb-3 w-100">
+          <input type="text" id="text-input-2" v-model="inputText2" class="form-control mb-3 w-100">
+          <input type="text" id="text-input-3" v-model="inputText3" class="form-control mb-3 w-100">
+          <input type="text" id="text-input-4" v-model="inputText4" class="form-control mb-3 w-100">
+          <input type="text" id="text-input-5" v-model="inputText5" class="form-control mb-3 w-100">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          <span v-if="!isLoading">Get Recommendations</span>
+          <span v-else class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
+      </form>
+      <div v-if="apiResponse" class="api-response p-4 rounded-lg shadow-sm bg-dark">
+        <h3 class="text-light">Our recommendation</h3>
+        <p>{{ apiResponse }}</p>
       </div>
-      <button type="submit" class="btn btn-primary" :disabled="isLoading">
-        <span v-if="!isLoading">Get Recommendations</span>
-        <span v-else class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-      </button>
-    </form>
-    <div v-if="apiResponse" class="api-response mt-4">
-      <h3>Our recommendation</h3>
-        {{  apiResponse }}
     </div>
   </div>
 </template>
+
+<style scoped>
+/* Form styling */
+form {
+  background-color: #343a40; /* Darker background for contrast */
+  color: #fff;
+  border-radius: 10px; /* Increased border radius */
+}
+
+.form-group .form-control {
+  width: 100%; /* Ensure full width for responsiveness */
+}
+
+label {
+  color: #fff; /* Ensure label visibility */
+}
+
+.form-group {
+  margin-bottom: 15px; /* Increased spacing between fields */
+}
+
+/* Button styling */
+button {
+  background-color: #007bff; /* Primary blue */
+  border-color: #007bff;
+  border-radius: 5px; /* Slightly rounded edges */
+}
+
+/* Response styling */
+.api-response {
+  background-color: #f8f9fa; /* Light gray background */
+  border-color: #ddd;
+  border-radius: 10px; /* Increased border radius */
+  font-size: 16px; /* Slightly larger font for readability */
+}
+
+.container-fluid {
+  width: 600px;
+}
+</style>
 
 <script>
 import axios from 'axios';
@@ -70,15 +112,6 @@ export default {
 </script>
 
 <style scoped>
-.illustration-container {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.books-illustration {
-  width: 300px;
-  height: 200px;
-}
 
 .api-response {
   border: 1px solid #ccc;

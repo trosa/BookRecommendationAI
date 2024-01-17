@@ -5,3 +5,4 @@
 .idea/runConfigurations/openAiSandbox.xml
 __pycache__/index.cpython-311.pyc
 __pycache__/openAiSandbox.cpython-311.pyc
+.DS_Store
